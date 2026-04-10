@@ -60,4 +60,7 @@ def handle(m):
         bot.reply_to(m, "[[ОШИБКА СДЕЛКИ]]! [Спортики] ПЕРЕРЕЗАЛИ [Провода]!! ПОПРОБУЙ ЕЩЕ РАЗ!!")
 
 
-bot.infinity_polling()      
+if __name__ == "__main__":
+    bot.remove_webhook(drop_pending_updates=True)
+    print("СПАМТОН В СЕТИ!")
+    bot.infinity_polling(skip_pending=True)     
