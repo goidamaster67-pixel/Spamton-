@@ -61,6 +61,9 @@ def handle(m):
 
 
 if __name__ == "__main__":
-    bot.remove_webhook(drop_pending_updates=True)
+    bot.remove_webhook()
     print("СПАМТОН В СЕТИ!")
-    bot.infinity_polling(skip_pending=True)     
+    bot.infinity_polling(skip_pending=True)
+    
+    
+         
