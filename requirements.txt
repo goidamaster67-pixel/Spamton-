@@ -1,3 +1,4 @@
 pyTelegramBotAPI
-   g4f
-   flask
+g4f[all]
+flask
+curl_cffi
