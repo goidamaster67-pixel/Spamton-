@@ -47,23 +47,20 @@ def handle(m):
         return
 
     
-    try:
-        res = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": PROMPT},
-                {"role": "user", "content": m.text}
-            ]
-        )
-        bot.reply_to(m, res.choices[0].message.content)
-    except:
-        bot.reply_to(m, "[[ОШИБКА СДЕЛКИ]]! [Спортики] ПЕРЕРЕЗАЛИ [Провода]!! ПОПРОБУЙ ЕЩЕ РАЗ!!")
-
+            try:
+            res = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": "Ты Спамтон, безумный торговец из Deltarune. Говори капсом, используй квадратные скобки и предлагай сделки!"},
+                    {"role": "user", "content": m.text}
+                ],
+                provider=g4f.Provider.Blackbox
+            )
+            bot.reply_to(m, res.choices[0].message.content)
+        except:
+            bot.reply_to(m, "[[ОШИБКА СДЕЛКИ]]! [Спортики] ПЕРЕРЕЗАЛИ [Провода]!! ПОПРОБУЙ ЕЩЕ РАЗ!!")
 
 if __name__ == "__main__":
     bot.remove_webhook()
     print("СПАМТОН В СЕТИ!")
     bot.infinity_polling(skip_pending=True)
-    
-    
-         
