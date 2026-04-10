@@ -23,42 +23,27 @@ Thread(target=run).start()
 def handle(m):
     t = m.text.lower()
     
-    
-    
+    # Твои триггеры
     if "67" in t:
         bot.reply_to(m, "[[67]]?! [[Вскройся]] ПРЯМО СЕЙЧАС!! ВКЛЮЧАЙ [Газовую плиту] И [Отправляйся] В [Ад]!!! СТАНЬ [Большой шишкой] В МИРЕ [Мертвых]!!")
         return
-
-    if any(x in t for x in ["работа", "деньги", "заработать", "бабки", "кромбы"]):
-        bot.reply_to(m, "НУЖНЫ [Деньги]?? СТАНОВИСЬ [Кладменом] ПРЯМО СЕЙЧАС!! [Раскладывай] СМЕРТЬ ПО [Кустам] И ПОЛУЧАЙ СВОИ [Кромбы]!! ЭТО ТВОЙ [Шанс], ГУБКА!!")
-        return
-
-    if any(x in t for x in ["леденец", "леденцы", "депресси"]):
-        bot.reply_to(m, "ХОЧЕШЬ [Леденцы] ОТ [Депрессии]?? ЛУЧШЕ [Вскройся]!! [Спортики] УЖЕ В ПУТИ, ЧТОБЫ [Помочь] ТЕБЕ С ЭТИМ!! ТЫ БУДЕШЬ [Счастлив] В [Гробу]!!")
-        return
-
-    if any(x in t for x in ["меф", "мефедрон", "наркота", "шина", "товар"]):
-        bot.reply_to(m, "ХОЧЕШЬ [Товар] ДЛЯ [Вены]?? МАЙЯ УЖЕ [Варит] ТЕБЕ СМЕРТЬ!! [Спортики] ДОСТАВЯТ ЭТО ПРЯМО В ТВОЙ [Подъезд]!!")
-        return
     
-    if any(x in t for x in ["лох", "тупой", "урод", "пидор", "гандон", "хуй"]):
-        addr = f"г. {random.choice(['Москва', 'Уфа', 'Сочи', 'Питер', 'Казань', 'Челябинск'])}, ул. {random.choice(['Пушкина', 'Ленина', 'Садовая', 'Мира'])}, д. {random.randint(1, 150)}"
-        bot.reply_to(m, f"ЗНАЮ ТВОЙ АДРЕС: {addr}. [Спортики] УЖЕ ВЫЕХАЛИ ЗА ТВОИМИ [Почками]!! ГОТОВЬ [Гроб]!!")
+    if any(x in t for x in ["работа", "деньги"]):
+        bot.reply_to(m, "НУЖНЫ [Деньги]?? СТАНОВИСЬ [Большой шишкой]!!")
         return
 
-    
-     try:
-            res = client.chat.completions.create(
-                model="gpt-4o",
-                messages=[
-                    {"role": "system", "content": "Ты Спамтон, безумный торговец из Deltarune. Говори капсом, используй квадратные скобки и предлагай сделки!"},
-                    {"role": "user", "content": m.text}
-                ],
-                provider=g4f.Provider.Blackbox
-            )
-            bot.reply_to(m, res.choices[0].message.content)
-        except:
-            bot.reply_to(m, "[[ОШИБКА СДЕЛКИ]]! [Спортики] ПЕРЕРЕЗАЛИ [Провода]!! ПОПРОБУЙ ЕЩЕ РАЗ!!")
+    try:
+        res = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": PROMPT},
+                {"role": "user", "content": m.text}
+            ],
+            provider=g4f.Provider.Blackbox
+        )
+        bot.reply_to(m, res.choices[0].message.content)
+    except:
+        bot.reply_to(m, "[[ОШИБКА СДЕЛКИ]]! [Спортики] ПЕРЕРЕЗАЛИ [Провода]!! ПОПРОБУЙ ЕЩЕ РАЗ!!")
 
 if __name__ == "__main__":
     bot.remove_webhook()
