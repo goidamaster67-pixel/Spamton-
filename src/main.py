@@ -1,4 +1,4 @@
- import os
+import os
 import telebot
 import random
 from threading import Thread
