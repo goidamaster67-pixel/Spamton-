@@ -47,7 +47,7 @@ def handle(m):
         return
 
     
-            try:
+     try:
             res = client.chat.completions.create(
                 model="gpt-4o",
                 messages=[
